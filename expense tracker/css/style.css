@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(119, 158, 187);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: rgb(40, 103, 155);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 60%;
+    
+}
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+form {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+form input, form select, form button {
+    padding: 10px;
+    margin-right: 4px;
+}
+
+form button {
+    background-color: rgb(110, 214, 157);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+form button:hover {
+    background-color: white;
+    color: rgb(156, 219, 127);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 3px solid rgb(0, 0, 0);
+    color:white ;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+td button {
+    margin-right: 5px;
+}
+
+p {
+    text-align: right;
+    font-weight: bolder;
+    color: white;
+}
+.edit-btn{
+    color: purple;
+    background-color: white;
+}
+.delete-btn{
+    color: purple;
+    background-color: white;  
+    cursor: pointer;
+    padding: 2px; 
+}

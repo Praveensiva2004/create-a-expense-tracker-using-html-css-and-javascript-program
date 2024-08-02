@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Expense Tracker</h1>
+        <form id="expense-form">
+            <input type="text" id="expense-name" placeholder="Expense Name">
+            <input type="number" id="expense-amount" placeholder="Amount">
+            <select id="expense-category">
+                <option value="Food">Food</option>
+                <option value="Transport">Transport</option>
+                <option value="Entertainment">Entertainment</option>
+            </select>
+            <input type="date" id="expense-date">
+            <button type="submit">Add Expense</button>
+        </form>
+        <table id="expense-table">
+            <thead>
+                <tr>
+                    <th>Expense Name</th>
+                    <th>Amount</th>
+                    <th>Category</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <p>Total: $<span id="total-amount">0.00</span></p>
+    </div>
+
+
+
+
+    <!-- script -->
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('expense-form');
+            const tableBody = document.querySelector('#expense-table tbody');
+            const totalAmountSpan = document.getElementById('total-amount');
+            let expenses = [];
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const name = document.getElementById('expense-name').value;
+                const amount = parseFloat(document.getElementById('expense-amount').value);
+                const category = document.getElementById('expense-category').value;
+                const date = document.getElementById('expense-date').value;
+
+                const expense = { name, amount, category, date };
+
+                expenses.push(expense);
+                addExpenseToTable(expense);
+                updateTotalAmount();
+                form.reset();
+            });
+
+            function addExpenseToTable(expense) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+            <td>${expense.name}</td>
+            <td>$${expense.amount.toFixed(2)}</td>
+            <td>${expense.category}</td>
+            <td>${expense.date}</td>
+            <td><button class="edit-btn">Edit</button><button class="delete-btn">Delete</button></td>
+        `;
+                tableBody.appendChild(row);
+
+                row.querySelector('.delete-btn').addEventListener('click', function () {
+                    tableBody.removeChild(row);
+                    expenses = expenses.filter(exp => exp !== expense);
+                    updateTotalAmount();
+                });
+
+            }
+
+            function updateTotalAmount() {
+                const totalAmount = expenses.reduce((total, exp) => total + exp.amount, 0);
+                totalAmountSpan.textContent = totalAmount.toFixed(2);
+            }
+        });
+    </script>
+</body>
+
+</html>
